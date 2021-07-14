@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sundingyi.libmanager.dao.BookDao">
+    <resultMap id="BaseResultMap" type="com.sundingyi.libmanager.model.Book">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="bookname" jdbcType="VARCHAR" property="bookname"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="borrowed" jdbcType="INTEGER" property="borrowed"/>
+        <result column="borrowed_to" jdbcType="VARCHAR" property="borrowedTo"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id
+        , bookname, author, borrowed, borrowed_to
+    </sql>
+    <select id="selectByExample" parameterType="com.sundingyi.libmanager.model.BookExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from book
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.sundingyi.libmanager.model.BookExample">
+        delete from book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.sundingyi.libmanager.model.Book"
+            useGeneratedKeys="true">
+        insert into book (bookname, author, borrowed,
+                          borrowed_to)
+        values (#{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{borrowed,jdbcType=INTEGER},
+                #{borrowedTo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sundingyi.libmanager.model.Book"
+            useGeneratedKeys="true">
+        insert into book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookname != null">
+                bookname,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="borrowed != null">
+                borrowed,
+            </if>
+            <if test="borrowedTo != null">
+                borrowed_to,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookname != null">
+                #{bookname,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="borrowed != null">
+                #{borrowed,jdbcType=INTEGER},
+            </if>
+            <if test="borrowedTo != null">
+                #{borrowedTo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.sundingyi.libmanager.model.BookExample" resultType="java.lang.Long">
+        select count(*) from book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update book
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.bookname != null">
+                bookname = #{record.bookname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.author != null">
+                author = #{record.author,jdbcType=VARCHAR},
+            </if>
+            <if test="record.borrowed != null">
+                borrowed = #{record.borrowed,jdbcType=INTEGER},
+            </if>
+            <if test="record.borrowedTo != null">
+                borrowed_to = #{record.borrowedTo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update book
+        set id = #{record.id,jdbcType=BIGINT},
+        bookname = #{record.bookname,jdbcType=VARCHAR},
+        author = #{record.author,jdbcType=VARCHAR},
+        borrowed = #{record.borrowed,jdbcType=INTEGER},
+        borrowed_to = #{record.borrowedTo,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sundingyi.libmanager.model.Book">
+        update book
+        <set>
+            <if test="bookname != null">
+                bookname = #{bookname,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="borrowed != null">
+                borrowed = #{borrowed,jdbcType=INTEGER},
+            </if>
+            <if test="borrowedTo != null">
+                borrowed_to = #{borrowedTo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sundingyi.libmanager.model.Book">
+        update book
+        set bookname    = #{bookname,jdbcType=VARCHAR},
+            author      = #{author,jdbcType=VARCHAR},
+            borrowed    = #{borrowed,jdbcType=INTEGER},
+            borrowed_to = #{borrowedTo,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
