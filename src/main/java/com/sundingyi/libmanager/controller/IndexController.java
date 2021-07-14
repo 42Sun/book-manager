@@ -11,4 +11,10 @@ public class IndexController {
     public String index() {
         return "你好";
     }
+    
+    @ResponseBody
+    @GetMapping("/user")
+    public String user() {
+        return "user";
+    }
 }
