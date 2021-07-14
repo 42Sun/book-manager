@@ -16,37 +16,29 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-12" th:fragment="navbar">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" href="/">图书管理系统</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!--            <form class="d-flex" style="white-space:nowrap">-->
-            <!--                <input class="form-control me-2" type="search" placeholder="输入搜索内容" aria-label="Search">-->
-            <!--                <button class="btn btn-outline-success" type="submit">搜索</button>-->
-            <!--            </form>-->
+            <form class="d-flex" style="white-space:nowrap">
+                <input class="form-control me-2" type="search" placeholder="输入搜索内容" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">搜索</button>
+            </form>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile/replies">消息 <span class="badge bg-primary rounded-pill"
-                                                                         th:text="${session.unreadCount}">2</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/publish">发布</a>
-                </li>
                 <li class="nav-item dropdown" th:if="${session.githubUser != null}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false" th:text="${session.githubUser.getName()}">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/profile/questions">个人中心</a></li>
                         <li><a class="dropdown-item" href="/logout">退出登录</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" th:unless="${session.githubUser != null}">
                     <a class="nav-link"
-                       href="https://github.com/login/oauth/authorize?client_id=f6d803ab4899d0fab50a&redirect_uri=http://192.168.0.115:8080/callback&scope=user&state=1">登录</a>
+                       href="/login">登录</a>
                 </li>
 
             </ul>
