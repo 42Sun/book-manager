@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML>"
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <title>图书管理系统</title>
@@ -10,16 +10,28 @@
     <div class="row">
 
         <div class="col-xl-12 ">
-            <a href="/publish">新增</a>
-            <div class="d-flex" th:each="book : ${bookList}" style="border-bottom: 1px solid #e2e2e2">
+            <a class="btn btn-primary" href="/publish" role="button">添加图书</a>
 
-                <a class="flex-grow-1 ms-3" th:href="@{'/book/' + ${book.id}}">>
-                    [[${book.bookname}]] ∙ [[${book.author}]] ∙ [[${book.borrowed}]]借走
-                </a>
+            <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 1rem">
+                <div th:class="${book.getBorrowed == 1} ? 'card text-white bg-primary mb-3' : 'card text-white bg-secondary mb-3'"
+                     style="max-width: 18rem; margin: auto;     margin-left: .6em;
+;height: 13rem;" th:each="book : ${bookList}">
+                    <div class="card-header" th:text="${book.getBorrowed == 1} ? '还在' : '被借走了'"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a style="color: whitesmoke; text-decoration: underline" th:href="@{'/book/' + ${book.id}}"
+                               th:text="${book.getBookname()}"></a>
+                        </h5>
+                        <p class="card-text" th:text="${book.getAuthor()}"></p>
+                    </div>
+                </div>
             </div>
+
+
         </div>
 
     </div>
+
 </div>
 </body>
 </html>

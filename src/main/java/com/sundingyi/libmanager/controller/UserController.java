@@ -53,9 +53,9 @@ public class UserController {
     }
     
     @GetMapping("/modify/{username}")
-    public String modify(@PathVariable("username") String username) {
-        User user = userService.findByName(username);
-        userService.insertOrUpdate(user);
+    public String modify(@PathVariable("username") String username,
+                         Model model) {
+        model.addAttribute("username", username);
         return "modify";
     }
     

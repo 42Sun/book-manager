@@ -2,19 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${book.getBookname()}"></title>
     <head th:insert="common :: head"></head>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <div th:replace="common :: navbar"></div>
-<div>
-    <p th:text="${book.getBookname()}"></p>
-    <p th:text="${book.getAuthor()}"></p>
-    <p th:text="${book.getBorrowed()}"></p>
-    <p th:text="${book.getBorrowedTo()}"></p>
-    <a th:href="@{'/publish/' + ${book.getId()}}" }>图书信息修改</a>
-    <a th:href="@{'/borrow/' + ${book.getId()}}" }>图书借阅管理</a>
-    <a th:href="@{'/delete/' + ${book.getId()}}" }>删除图书</a>
+<div class="container py-4">
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold" th:text="${book.getBookname()}"></h1>
+            <p class="col-md-8 fs-4" th:text="${book.getAuthor()}"></p>
+            <p class="col-md-8 fs-4" th:text="${book.getBorrowed == 1} ? '还在' : '被借走了'"></p>
+            <a class="btn btn-primary" th:href="@{'/publish/' + ${book.getId()}}" role="button">图书信息修改</a>
+            <a class="btn btn-primary" th:href="@{'/borrow/' + ${book.getId()}}" role="button">图书借阅管理</a>
+            <a class="btn btn-danger" th:href="@{'/delete/' + ${book.getId()}}" role="button">删除图书</a>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>
