@@ -41,14 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/haha").hasRole("ADMIN")
 //                .anyRequest().authenticated()
 //                .and().csrf().disable();
-        
-        
+    
+    
         http.formLogin().defaultSuccessUrl("/").permitAll();
-        http.httpBasic();
-        http.authorizeRequests().antMatchers("/haha").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/unauth").permitAll();
+//        http.httpBasic();
+//        http.authorizeRequests().antMatchers("/haha").hasAuthority("ADMIN");
         http.authorizeRequests((requests) -> requests.anyRequest().authenticated());
-        http.exceptionHandling().accessDeniedPage("/unauth.html");
-        
-        http.logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
+        http.exceptionHandling().accessDeniedPage("/unauth");
+    
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 }

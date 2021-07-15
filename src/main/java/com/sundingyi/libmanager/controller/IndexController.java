@@ -24,4 +24,9 @@ public class IndexController {
         model.addAttribute("bookList", bookList);
         return "index";
     }
+    
+    @GetMapping("/unauth")
+    public String unauth() {
+        return "unauth";
+    }
 }

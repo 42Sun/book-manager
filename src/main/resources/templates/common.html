@@ -19,29 +19,22 @@
     <div class="container">
         <a class="navbar-brand" href="/">图书管理系统</a>
         <a class="navbar-brand" href="/user">用户管理</a>
+        <a class="navbar-brand" href="/search">搜索</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex" style="white-space:nowrap">
-                <input class="form-control me-2" type="search" placeholder="输入搜索内容" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">搜索</button>
-            </form>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" th:if="${session.githubUser != null}">
-
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/logout">退出登录</a></li>
-                    </ul>
+                <li>
+                    <a class="nav-link"
+                       href="/logout">退出</a>
                 </li>
                 <li>
                     <a class="nav-link"
                        href="/logout">退出</a>
                 </li>
-
             </ul>
-
         </div>
     </div>
 </nav>

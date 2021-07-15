@@ -2,6 +2,7 @@ package com.sundingyi.libmanager.controller;
 
 import com.sundingyi.libmanager.model.Book;
 import com.sundingyi.libmanager.service.BookService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class PublishController {
         this.bookService = bookService;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/publish") //新图书
     public String publish(Model model) {
         int NewId = bookService.getMaxId() + 1;
@@ -24,6 +26,7 @@ public class PublishController {
         return "publish";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/publish/{id}") //修改页面
     public String publish(@PathVariable("id") long id, Model model) {
         Book book = bookService.getById(id);
@@ -35,6 +38,7 @@ public class PublishController {
         return "publish";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/publish/{id}") //图书修改信息传回
     public String publich(@PathVariable("id") long id,
                           @RequestParam("bookname") String bookname,

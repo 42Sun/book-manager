@@ -2,6 +2,7 @@ package com.sundingyi.libmanager.controller;
 
 import com.sundingyi.libmanager.service.BookService;
 import com.sundingyi.libmanager.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +17,14 @@ public class DeleteController {
         this.userService = userService;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") long id) {
         bookService.deleteById(id);
         return "redirect:/";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/user/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteByUsername(username);

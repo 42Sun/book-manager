@@ -2,6 +2,7 @@ package com.sundingyi.libmanager.controller;
 
 import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,13 @@ public class UserController {
         this.userService = userService;
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/create")
     public String create() {
         return "create";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping()
     public String user(Model model) {
         List<User> userList = new ArrayList<>();
@@ -31,6 +34,7 @@ public class UserController {
         return "user";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public String createUser(@RequestParam("username") String username,
                              @RequestParam("password") String password,
@@ -51,6 +55,7 @@ public class UserController {
         return "redirect:/user";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/modify/{username}")
     public String modify(@PathVariable("username") String username) {
         User user = userService.findByName(username);
