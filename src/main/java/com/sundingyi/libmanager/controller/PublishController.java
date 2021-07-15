@@ -44,6 +44,6 @@ public class PublishController {
         book.setBookname(bookname);
         book.setAuthor(author);
         bookService.updateById(book);
-        return "redirect:/book/" + id;
+        return "redirect:/";
     }
 }

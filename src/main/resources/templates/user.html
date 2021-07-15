@@ -13,6 +13,8 @@
             <a href="/user/create" methods="get">新增</a>
             <div class="d-flex" th:each="user : ${userList}" style="border-bottom: 1px solid #e2e2e2">
                 [[${user.username}]] ∙ [[${user.roles}]]
+                <div><a th:href="@{'/user/modify/'+${user.username}}" methods="get">修改</a>
+                    <a th:href="@{'/delete/user/'+${user.username}}" methods="get">删除</a></div>
             </div>
         </div>
 

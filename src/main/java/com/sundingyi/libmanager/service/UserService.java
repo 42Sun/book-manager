@@ -34,8 +34,17 @@ public class UserService {
         user.setPassword(password);
     }
     
-    public void insert(User user) {
+    public void insertOrUpdate(User user) {
+        User dbUser = userDao.selectByPrimaryKey(user.getUsername());
         encryptPassword(user);
-        myDao.insert(user);
+        if (dbUser == null) { //无这个用户。新增
+            myDao.insert(user);
+        } else { //有这个用户，修改
+            userDao.updateByPrimaryKey(user);
+        }
+    }
+    
+    public void deleteByUsername(String username) {
+        userDao.deleteByPrimaryKey(username);
     }
 }

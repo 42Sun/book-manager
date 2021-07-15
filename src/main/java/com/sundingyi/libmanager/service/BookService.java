@@ -55,7 +55,13 @@ public class BookService {
     }
     
     public int getMaxId() {
-        return myDao.getMaxId();
+        long count = bookDao.countByExample(new BookExample());
+        if (count > 0) {
+            return myDao.getMaxId();
+        } else {
+            return 0;
+        }
+    
     }
     
     public void deleteById(long id) {

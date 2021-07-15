@@ -4,10 +4,7 @@ import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +34,28 @@ public class UserController {
     @PostMapping("/create")
     public String createUser(@RequestParam("username") String username,
                              @RequestParam("password") String password,
-                             @RequestParam("roles") String roles) {
+                             @RequestParam("roles") String roles,
+                             Model model) {
         User user = new User();
+        if ("".equals(username) || "".equals(password) || "".equals(roles)) {
+            model.addAttribute("username", username);
+            model.addAttribute("password", password);
+            model.addAttribute("roles", roles);
+            model.addAttribute("error", "请不要留空");
+            return "modify";
+        }
         user.setUsername(username);
         user.setPassword(password);
         user.setRoles(roles);
-        userService.insert(user);
+        userService.insertOrUpdate(user);
         return "redirect:/user";
     }
+    
+    @GetMapping("/modify/{username}")
+    public String modify(@PathVariable("username") String username) {
+        User user = userService.findByName(username);
+        userService.insertOrUpdate(user);
+        return "modify";
+    }
+    
 }

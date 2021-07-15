@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>图书管理系统</title>
+    <head th:insert="common :: head"></head>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<div class="row">
+    <div class="col-xl-12 ">
+        <h2><i class="bi bi-pencil-square"></i>修改用户信息</h2>
+        <hr>
+        <form th:action="@{/user/create}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">用户名</label>
+                <input type="text" readonly="readonly" class="form-control" id="username" name="username"
+                       th:value="${username}"
+                       placeholder="在这里输入用户名">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">密码</label>
+                <input type="password" class="form-control" id="password" name="password" th:value="${password}"
+                       placeholder="在这里输入密码">
+            </div>
+            <div class="mb-3">
+                <select class="form-select" id="roles" name="roles" th:value="${roles}"
+                        aria-label="Default select example">
+                    <option selected>用户组</option>
+                    <option value="READER">读者</option>
+                    <option value="ADMIN">书籍管理员</option>
+                    <option value="BORADMIN">借阅管理员</option>
+                </select>
+            </div>
+
+
+            <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
+            </div>
+            <button type="submit" class="btn btn-success" style="float: right">提交</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
