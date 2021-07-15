@@ -9,6 +9,11 @@
 <div th:replace="common :: navbar"></div>
 <div>
     <p th:text="${book.getBookname()}"></p>
+    <p th:text="${book.getAuthor()}"></p>
+    <p th:text="${book.getBorrowed()}"></p>
+    <p th:text="${book.getBorrowedTo()}"></p>
+    <a th:href="@{'/publish/' + ${book.getId()}}" }>图书信息修改</a>
+    <a th:href="@{'/borrow/' + ${book.getId()}}" }>图书借阅管理</a>
 </div>
 </body>
 </html>

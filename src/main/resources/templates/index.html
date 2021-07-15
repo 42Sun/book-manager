@@ -8,7 +8,9 @@
 <div th:replace="common :: navbar"></div>
 <div class="container mt-3">
     <div class="row">
+
         <div class="col-xl-12 ">
+            <a href="/publish">新增</a>
             <div class="d-flex" th:each="book : ${bookList}" style="border-bottom: 1px solid #e2e2e2">
 
                 <a class="flex-grow-1 ms-3" th:href="@{'/book/' + ${book.id}}">>
@@ -16,6 +18,7 @@
                 </a>
             </div>
         </div>
+
     </div>
 </div>
 </body>

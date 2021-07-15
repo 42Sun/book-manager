@@ -26,4 +26,22 @@ public class BookService {
         Book book = bookDao.selectByPrimaryKey(id);
         return book;
     }
+    
+    public void updateById(Book book) {
+        Book oldBook = bookDao.selectByPrimaryKey(book.getId());
+        book.setBorrowed(oldBook.getBorrowed());
+        book.setBorrowedTo(oldBook.getBorrowedTo());
+        BookExample bookExample = new BookExample();
+        bookExample.createCriteria().andIdEqualTo(book.getId());
+        bookDao.updateByExample(book, bookExample);
+    }
+    
+    public void updateByIdBorrow(Book book) {
+        Book oldBook = bookDao.selectByPrimaryKey(book.getId());
+        book.setBookname(oldBook.getBookname());
+        book.setAuthor(oldBook.getAuthor());
+        BookExample bookExample = new BookExample();
+        bookExample.createCriteria().andIdEqualTo(book.getId());
+        bookDao.updateByExample(book, bookExample);
+    }
 }

@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().csrf().disable();
         
         
-        http.formLogin().defaultSuccessUrl("/success").permitAll();
+        http.formLogin().defaultSuccessUrl("/").permitAll();
         http.httpBasic();
         http.authorizeRequests().antMatchers("/haha").hasAuthority("ADMIN");
         http.authorizeRequests((requests) -> requests.anyRequest().authenticated());
