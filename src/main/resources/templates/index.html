@@ -11,9 +11,9 @@
         <div class="col-xl-12 ">
             <div class="d-flex" th:each="book : ${bookList}" style="border-bottom: 1px solid #e2e2e2">
 
-                <div class="flex-grow-1 ms-3">
-                    [[${book.bookname}]] ∙ [[${book.author}]] ∙ [[${book.borrowed}]]浏览
-                </div>
+                <a class="flex-grow-1 ms-3" th:href="@{'/book/' + ${book.id}}">>
+                    [[${book.bookname}]] ∙ [[${book.author}]] ∙ [[${book.borrowed}]]借走
+                </a>
             </div>
         </div>
     </div>

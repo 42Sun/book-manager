@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head th:insert="common :: head"></head>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<div>
+    <p th:text="${book.getBookname()}"></p>
+</div>
+</body>
+</html>

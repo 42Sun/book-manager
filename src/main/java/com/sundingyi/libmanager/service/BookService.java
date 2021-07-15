@@ -21,4 +21,9 @@ public class BookService {
         List<Book> books = bookDao.selectByExample(bookExample);
         return books;
     }
+    
+    public Book getById(long id) {
+        Book book = bookDao.selectByPrimaryKey(id);
+        return book;
+    }
 }
