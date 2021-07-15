@@ -2,14 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>登录</title>
+    <head th:insert="common :: head"></head>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<div>
-    用户名： <input type="text" name="myusername"/>
-</div>
-<div>
-    密码： <input type="password" name="mypassword"/>
-</div>
+<main class="form-signin">
+    <div class="alert alert-dark" role="alert">
+        <p>测试账号：</p>
+        <p>读者 reader 密码 reader</p>
+        <p>书籍管理员 admin 密码 admin</p>
+        <p>借阅管理员 <br>boradmin 密码 boradmin</p>
+    </div>
+    <form data-bitwarden-watching="1" action="/login" method="post">
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
+            <label for="username">用户名</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <label for="password">密码</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
+    </form>
+
+
+</main>
 </body>
 </html>

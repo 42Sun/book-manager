@@ -43,13 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().csrf().disable();
     
     
-        http.formLogin().defaultSuccessUrl("/").permitAll();
-        http.authorizeRequests().antMatchers("/unauth").permitAll();
+        http.formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/").permitAll();
+        http.authorizeRequests().antMatchers("/unauth", "/css/**", "/fonts/**", "/js/**").permitAll();
 //        http.httpBasic();
 //        http.authorizeRequests().antMatchers("/haha").hasAuthority("ADMIN");
         http.authorizeRequests((requests) -> requests.anyRequest().authenticated());
         http.exceptionHandling().accessDeniedPage("/unauth");
     
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+        http.csrf().disable();
     }
 }

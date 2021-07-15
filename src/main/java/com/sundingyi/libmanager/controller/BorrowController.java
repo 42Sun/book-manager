@@ -18,7 +18,7 @@ public class BorrowController {
         this.bookService = bookService;
     }
     
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('BORADMIN')")
     @GetMapping("/borrow/{id}")
     public String publish(@PathVariable("id") long id, Model model) {
         Book book = bookService.getById(id);
