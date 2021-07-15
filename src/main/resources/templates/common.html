@@ -14,7 +14,6 @@
     <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-12" th:fragment="navbar">
     <div class="container">
         <a class="navbar-brand" href="/">图书管理系统</a>
@@ -26,10 +25,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li>
-                    <a class="nav-link"
-                       href="/logout">退出</a>
-                </li>
+                <span class="navbar-text" th:text="${#authentication.name}"></span>
                 <li>
                     <a class="nav-link"
                        href="/logout">退出</a>
