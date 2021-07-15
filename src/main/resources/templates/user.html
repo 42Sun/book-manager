@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-xl-12 ">
-            <a href="/publish">新增</a>
+            <a href="/user/create" methods="get">新增</a>
             <div class="d-flex" th:each="user : ${userList}" style="border-bottom: 1px solid #e2e2e2">
                 [[${user.username}]] ∙ [[${user.roles}]]
             </div>

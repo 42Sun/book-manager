@@ -2,6 +2,7 @@ package com.sundingyi.libmanager.config;
 
 
 import com.sundingyi.libmanager.service.MyUserDetailsService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +21,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+//        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+        
+    }
+    
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
     
     @Override
@@ -41,6 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests((requests) -> requests.anyRequest().authenticated());
         http.exceptionHandling().accessDeniedPage("/unauth.html");
         
-        http.logout().logoutUrl("/logout").logoutSuccessUrl("/success").permitAll();
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
     }
 }

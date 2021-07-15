@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class UserController {
     
     @GetMapping("/create")
     public String create() {
-        return null;
+        return "create";
     }
     
     @GetMapping()
@@ -34,7 +35,14 @@ public class UserController {
     }
     
     @PostMapping("/create")
-    public String create(int a) {
-        return null;
+    public String createUser(@RequestParam("username") String username,
+                             @RequestParam("password") String password,
+                             @RequestParam("roles") String roles) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRoles(roles);
+        userService.insert(user);
+        return "redirect:/user";
     }
 }
