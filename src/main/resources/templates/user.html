@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>图书管理系统</title>
+    <head th:insert="common :: head"></head>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<div class="container mt-3">
+    <div class="row">
+
+        <div class="col-xl-12 ">
+            <a href="/publish">新增</a>
+            <div class="d-flex" th:each="user : ${userList}" style="border-bottom: 1px solid #e2e2e2">
+                [[${user.username}]] ∙ [[${user.roles}]]
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -18,13 +18,16 @@ public class PublishController {
     }
     
     @GetMapping("/publish") //新图书
-    public String publish() {
+    public String publish(Model model) {
+        int NewId = bookService.getMaxId() + 1;
+        model.addAttribute("id", NewId);
         return "publish";
     }
     
     @GetMapping("/publish/{id}") //修改页面
     public String publish(@PathVariable("id") long id, Model model) {
         Book book = bookService.getById(id);
+        model.addAttribute("id", id);
         model.addAttribute("bookname", book.getBookname());
         model.addAttribute("author", book.getAuthor());
         model.addAttribute("borrowed", book.getBorrowed());
