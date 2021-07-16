@@ -3,6 +3,7 @@
 ### 后端
 - Spring Boot
 - Sprint Security
+- MyBatis
 ### 前端
 - Thymeleaf
 - BootStrap
