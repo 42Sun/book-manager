@@ -28,6 +28,9 @@
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
     </form>
+    <div class="alert alert-danger" role="alert" th:if="${param.error}" style="text-align: center;">
+        <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+    </div>
 
 
 </main>
