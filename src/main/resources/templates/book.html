@@ -28,7 +28,8 @@
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold" th:text="${book.getBookname()}"></h1>
             <p class="col-md-8 fs-4" th:text="${book.getAuthor()}"></p>
-            <p class="col-md-8 fs-4" th:text="${book.getBorrowed == 1} ? '还在' : '被借走了'"></p>
+            <p class="col-md-8 fs-4"
+               th:text="${book.getBorrowed == 1} ? '还在' : '被 ' + ${book.getBorrowedTo()} + ' 借走了'"></p>
             <a class="btn btn-primary" th:href="@{'/publish/' + ${book.getId()}}" role="button">图书信息修改</a>
             <a class="btn btn-primary" th:href="@{'/borrow/' + ${book.getId()}}" role="button">图书借阅管理</a>
             <a class="btn btn-danger" th:href="@{'/delete/' + ${book.getId()}}" role="button">删除图书</a>

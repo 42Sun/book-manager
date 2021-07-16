@@ -33,7 +33,7 @@ public class BookService {
     public void updateById(Book book) {
         Book oldBook = bookDao.selectByPrimaryKey(book.getId());
         if (oldBook == null) {
-            book.setBorrowed(0);
+            book.setBorrowed(1);
             book.setBorrowedTo("");
             bookDao.insert(book);
             return;

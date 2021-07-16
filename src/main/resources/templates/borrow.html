@@ -7,15 +7,19 @@
 <body>
 <div th:replace="common :: navbar"></div>
 <div class="row">
-    <div class="col-xl-12 ">
-        <h2><i class="bi bi-pencil-square"></i>图书操作</h2>
+    <div class="col-xl-3 mx-auto">
+        <br>
+        <h2>图书操作</h2>
         <hr>
         <form th:action="@{'/borrow/' + ${id}}" method="post">
             <input type="hidden" name="id" th:value="${id}">
             <div class="mb-3">
-                <label for="borrowed" class="form-label">借阅状态</label>
-                <input type="text" class="form-control" id="borrowed" name="borrowed" th:value="${borrowed}"
-                       placeholder="在这里修改借阅状态">
+                <select class="form-select" id="borrowed" name="borrowed" th:value="${borrowed}"
+                        aria-label="Default select example">
+                    <option selected>借阅状态</option>
+                    <option value="0">被借走了</option>
+                    <option value="1">还在</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="borrowed_to" class="form-label">目前拥有者</label>
@@ -26,7 +30,7 @@
 
             <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
             </div>
-            <button type="submit" class="btn btn-success" style="float: right">提交</button>
+            <button type="submit" class="btn btn-primary" style="float: right">提交</button>
         </form>
     </div>
 </div>

@@ -6,18 +6,33 @@
 </head>
 <body>
 <div th:replace="common :: navbar"></div>
+
+
 <div class="container mt-3">
     <div class="row">
-
         <div class="col-xl-12 ">
-            <a href="/user/create" methods="get">新增</a>
-            <div class="d-flex" th:each="user : ${userList}" style="border-bottom: 1px solid #e2e2e2">
-                [[${user.username}]] ∙ [[${user.roles}]]
-                <div><a th:href="@{'/user/modify/'+${user.username}}" methods="get">修改</a>
-                    <a th:href="@{'/delete/user/'+${user.username}}" methods="get">删除</a></div>
+            <a class="btn btn-primary" href="/user/create" methods="get" role="button">添加用户</a>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 1rem">
+                <div class="card text-white bg-primary mb-3"
+                     style="max-width: 18rem; margin: auto; margin-left: .6em; height: 13rem;"
+                     th:each="user : ${userList}">
+                    <div class="card-header" th:text="${user.roles}"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a style="color: whitesmoke; text-decoration: underline"
+                               th:href="@{'/user/modify/'+${user.username}}"
+                               th:text="${user.username}"></a>
+                        </h5>
+                        <br>
+                        <a class="btn btn-danger" th:href="@{'/delete/user/'+${user.username}}" role="button">删除</a>
+
+
+                    </div>
+
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 </body>
