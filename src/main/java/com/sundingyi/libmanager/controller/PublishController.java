@@ -50,4 +50,34 @@ public class PublishController {
         bookService.updateById(book);
         return "redirect:/";
     }
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/publish/more") // 批量添加
+    public String publishMore(Model model) {
+        int NewId = bookService.getMaxId() + 1;
+        model.addAttribute("id", NewId);
+        return "publishmore";
+    }
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/publish/more/{id}") // POST 批量
+    public String publishBackMore(@PathVariable("id") long id,
+                                  @RequestParam("bookname") String bookname,
+                                  @RequestParam("author") String author,
+                                  @RequestParam("amount") long amount,
+                                  Model model) {
+        if (amount <= 0) {
+            model.addAttribute("error", "图书数量不对");
+            return "publishmore";
+        }
+        for (int i = 0; i < amount; i++, id++) {
+            Book book = new Book();
+            book.setId(id);
+            book.setBookname(bookname);
+            book.setAuthor(author);
+            bookService.updateById(book);
+        }
+        
+        return "redirect:/";
+    }
 }
