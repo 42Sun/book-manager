@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>图书管理系统</title>
+    <head th:insert="common :: head"></head>
+    <style>
+        form {
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<div class="container mt-3">
+
+    <div class="accordion accordion-flush col-xl-6" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    用户查询
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                 data-bs-parent="#accordionFlushExample">
+                <form th:action="@{/search/user}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">用户名</label>
+                        <input type="username" class="form-control" id="username" name="username" th:value="${username}"
+                               placeholder="在这里输入用户名">
+                    </div>
+                    <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="float: right">提交</button>
+                </form>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    图书查询
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                 data-bs-parent="#accordionFlushExample">
+                <form th:action="@{/search/book}" method="post">
+                    <input type="hidden" name="id" th:value="${id}">
+                    <div class="mb-3">
+                        <label for="bookname" class="form-label">书名</label>
+                        <input type="text" class="form-control" id="bookname" name="bookname" th:value="${bookname}"
+                               placeholder="在这里输入书名">
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">作者</label>
+                        <input type="text" class="form-control" id="author" name="author" th:value="${author}"
+                               placeholder="在这里输入作者">
+                    </div>
+
+
+                    <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="float: right">提交</button>
+                </form>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    借阅查询
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                 data-bs-parent="#accordionFlushExample">
+                <form th:action="@{/search/user}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">用户名</label>
+                        <input type="username" class="form-control" id="username" name="username" th:value="${username}"
+                               placeholder="在这里输入用户名">
+                    </div>
+                    <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="float: right">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
