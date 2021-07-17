@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: 'target/*.jar'
+          source: '*.jar'
           target: "/root"
       - name: run java -jar on server
         uses: appleboy/ssh-action@master
