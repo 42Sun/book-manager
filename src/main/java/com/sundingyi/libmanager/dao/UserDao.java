@@ -2,10 +2,9 @@ package com.sundingyi.libmanager.dao;
 
 import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.model.UserExample;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 public interface UserDao {
     long countByExample(UserExample example);

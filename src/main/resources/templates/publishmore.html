@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>图书管理系统</title>
+    <head th:insert="common :: head"></head>
+</head>
+<body>
+<div th:replace="common :: navbar"></div>
+<div class="row">
+    <div class="col-xl-3 mx-auto" style="">
+        <br>
+        <h2>图书信息修改</h2>
+        <hr>
+        <form th:action="@{'/publish/more/' + ${id}}" method="post">
+            <input type="hidden" name="id" th:value="${id}">
+            <div class="mb-3">
+                <label for="bookname" class="form-label">书名</label>
+                <input type="text" class="form-control" id="bookname" name="bookname" th:value="${bookname}"
+                       placeholder="在这里输入书名">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">作者</label>
+                <input type="text" class="form-control" id="author" name="author" th:value="${author}"
+                       placeholder="在这里输入作者">
+            </div>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label">数量</label>
+                <input type="text" class="form-control" id="amount" name="amount" th:value="1"
+                       placeholder="在这里输入数量">
+            </div>
+
+
+            <div class="alert alert-warning" role="alert" th:text="${error}" th:if="${error != null}">
+            </div>
+            <button type="submit" class="btn btn-primary" style="float: right">提交</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
