@@ -39,4 +39,5 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /root
+            pkill -f 'java'
             nohup java -jar target/*.jar &
