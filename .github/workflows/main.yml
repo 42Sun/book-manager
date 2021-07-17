@@ -40,4 +40,4 @@ jobs:
           script: |
             pkill java
             cd /root
-            nohup java -jar target/*.jar &
+            nohup java -jar target/*.jar & ps
