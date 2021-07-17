@@ -31,8 +31,8 @@ jobs:
           source: 'target/*.jar'
           target: "/root"
       - name: run java -jar on server
-        timeout-minutes: 3
-        continue-on-error: true
+#         timeout-minutes: 3
+#         continue-on-error: true
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -42,4 +42,4 @@ jobs:
           script: |
             pkill java
             cd /root
-            nohup java -jar target/*.jar &
+            nohup java -jar target/*.jar > nohup.out 2>&1 &
