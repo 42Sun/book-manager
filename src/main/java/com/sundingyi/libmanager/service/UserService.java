@@ -2,6 +2,7 @@ package com.sundingyi.libmanager.service;
 
 import com.sundingyi.libmanager.dao.MyDao;
 import com.sundingyi.libmanager.dao.UserDao;
+import com.sundingyi.libmanager.model.Book;
 import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.model.UserExample;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,5 +47,21 @@ public class UserService {
     
     public void deleteByUsername(String username) {
         userDao.deleteByPrimaryKey(username);
+    }
+    
+    
+    public List<User> findLikeName(String username) {
+        List<User> userList = myDao.findLikeName(username);
+        return userList;
+    }
+    
+    public List<Book> findLikeBook(String bookname, String author) {
+        List<Book> bookList = myDao.findLikeBook(bookname, author);
+        return bookList;
+    }
+    
+    public List<Book> findBorrowByName(String username) {
+        List<Book> bookList = myDao.findBorrowLikeName(username);
+        return bookList;
     }
 }
