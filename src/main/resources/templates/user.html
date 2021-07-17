@@ -14,15 +14,15 @@
             <a class="btn btn-primary" href="/user/create" methods="get" role="button">添加用户</a>
 
             <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 1rem">
-                <div class="card text-white bg-primary mb-3"
+                <div class="card mb-3"
                      style="max-width: 18rem; margin: auto; margin-left: .6em; height: 13rem;"
                      th:each="user : ${userList}">
                     <div class="card-header" th:text="${user.roles}"></div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a style="color: whitesmoke; text-decoration: underline"
-                               th:href="@{'/user/modify/'+${user.username}}"
-                               th:text="${user.username}"></a>
+                            <a
+                                    th:href="@{'/user/modify/'+${user.username}}"
+                                    th:text="${user.username}"></a>
                         </h5>
                         <br>
                         <a class="btn btn-danger" th:href="@{'/delete/user/'+${user.username}}" role="button">删除</a>

@@ -19,10 +19,10 @@
                        th:value="${username}"
                        placeholder="在这里输入用户名">
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">密码</label>
-                <input type="password" class="form-control" id="password" name="password" th:value="${password}"
-                       placeholder="在这里输入密码">
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="password" name="password" placeholder="password">
+                <label for="password">密码</label>
             </div>
             <div class="mb-3">
                 <select class="form-select" id="roles" name="roles" th:value="${roles}"

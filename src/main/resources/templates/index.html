@@ -13,14 +13,14 @@
             <a class="btn btn-primary" href="/publish/more" role="button">批量添加</a>
 
             <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 1rem">
-                <div th:class="${book.getBorrowed == 1} ? 'card text-white bg-primary mb-3' : 'card text-white bg-secondary mb-3'"
+                <div th:class="${book.getBorrowed == 1} ? 'card mb-3' : 'card bg-light mb-3'"
                      style="max-width: 18rem; margin: auto;     margin-left: .6em;
 ;height: 13rem;" th:each="book : ${bookList}">
                     <div class="card-header"
                          th:text="${book.getBorrowed == 1} ? '还在' : '被 ' + ${book.borrowedTo} + ' 借走了'"></div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a style="color: whitesmoke; text-decoration: underline" th:href="@{'/book/' + ${book.id}}"
+                            <a style="" th:href="@{'/book/' + ${book.id}}"
                                th:text="${book.getBookname()}"></a>
                         </h5>
                         <p class="card-text" th:text="${book.getAuthor()}"></p>
