@@ -38,6 +38,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            pkill java
             cd /root
-            pkill -f 'java'
             nohup java -jar target/*.jar &
