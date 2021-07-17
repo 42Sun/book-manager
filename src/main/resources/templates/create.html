@@ -12,15 +12,13 @@
         <h2>新建用户</h2>
         <hr>
         <form th:action="@{/user/create}" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">用户名</label>
-                <input type="username" class="form-control" id="username" name="username" th:value="${username}"
-                       placeholder="在这里输入用户名">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
+                <label for="username">用户名</label>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">密码</label>
-                <input type="password" class="form-control" id="password" name="password" th:value="${password}"
-                       placeholder="在这里输入密码">
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <label for="password">密码</label>
             </div>
             <div class="mb-3">
                 <select class="form-select" id="roles" name="roles" th:value="${roles}"
