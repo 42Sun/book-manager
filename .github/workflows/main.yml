@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: '*.jar'
+          source: 'target/*.jar'
           target: "/root"
       - name: run java -jar on server
         uses: appleboy/ssh-action@master
@@ -39,4 +39,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /root
-            nohup java -jar *.jar &
+            nohup java -jar target/*.jar &
