@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  build:
+  setup:
 
     runs-on: ubuntu-latest
 
@@ -21,6 +21,11 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+  deploy:
+    
+    runs-on: ubuntu-latest
+    steps:
+
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
