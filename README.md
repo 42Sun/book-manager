@@ -3,7 +3,7 @@
 ## 技术栈
 ### 后端
 - Spring Boot
-- Sprint Security
+- Spring Security
 ### 前端
 - Thymeleaf
 - Bootstrap Material Design
