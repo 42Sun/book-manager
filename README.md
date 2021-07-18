@@ -6,6 +6,6 @@
 - MyBatis
 ### 前端
 - Thymeleaf
-- BootStrap
+- Bootstrap Material Design
 ### 数据库
 - MySQL
