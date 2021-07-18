@@ -2,13 +2,15 @@ package com.sundingyi.libmanager.controller;
 
 import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-//@PreAuthorize("hasAuthority('ADMIN')")
+
+@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/user")
 @Controller
 public class UserController {
