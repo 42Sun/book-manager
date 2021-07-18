@@ -21,7 +21,7 @@ public class IndexController {
                         @RequestParam(value = "page", defaultValue = "1") int page) {
         PageInfo<Book> bookPageInfo = bookService.getAllBooks(page, 8);
         model.addAttribute("bookPageInfo", bookPageInfo);
-        model.addAttribute("noPage", true);
+        model.addAttribute("Page", true);
         return "index";
     }
     

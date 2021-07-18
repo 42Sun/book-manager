@@ -30,7 +30,7 @@
                 </div>
             </div>
             <!--            分页-->
-            <nav aria-label="pagination" th:if="${noPage == true}">
+            <nav aria-label="pagination" th:if="${Page == true}">
                 <ul class="pagination">
                     <li th:class="page-item" th:if="${!bookPageInfo.isFirstPage == true}">
                         <a class="page-link" th:href="@{/(page = ${bookPageInfo.navigateFirstPage})}"

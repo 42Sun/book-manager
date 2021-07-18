@@ -1,5 +1,6 @@
 package com.sundingyi.libmanager.service;
 
+import com.github.pagehelper.PageInfo;
 import com.sundingyi.libmanager.dao.MyDao;
 import com.sundingyi.libmanager.dao.UserDao;
 import com.sundingyi.libmanager.model.Book;
@@ -60,8 +61,8 @@ public class UserService {
         return bookList;
     }
     
-    public List<Book> findBorrowByName(String username) {
+    public PageInfo<Book> findBorrowByName(String username) {
         List<Book> bookList = myDao.findBorrowLikeName(username);
-        return bookList;
+        return new PageInfo<>(bookList);
     }
 }

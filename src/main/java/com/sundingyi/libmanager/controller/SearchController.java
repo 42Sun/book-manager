@@ -43,7 +43,6 @@ public class SearchController {
                              Model model) {
         List<Book> bookList = userService.findLikeBook(bookname, author);
         PageInfo<Book> bookPageInfo = new PageInfo<>(bookList);
-//        bookPageInfo.set
         model.addAttribute("bookPageInfo", bookPageInfo);
         return "index";
     }
@@ -51,8 +50,9 @@ public class SearchController {
     @PostMapping("/search/borrow")
     public String searchBorrow(@RequestParam("username") String username,
                                Model model) {
-        List<Book> bookList = userService.findBorrowByName(username);
-        model.addAttribute("bookList", bookList);
+        PageInfo<Book> bookPageInfo = userService.findBorrowByName(username);
+        model.addAttribute("bookPageInfo", bookPageInfo);
+        model.addAttribute("noPage", true);
         return "index";
     }
 }

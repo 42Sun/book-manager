@@ -13,18 +13,18 @@
         <hr>
         <form th:action="@{'/publish/more/' + ${id}}" method="post">
             <input type="hidden" name="id" th:value="${id}">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="bookname" name="bookname" placeholder="bookname">
-                <label for="bookname">书名</label>
+            <div class="form-outline">
+                <input required type="text" class="form-control" id="bookname" name="bookname">
+                <label class="form-label" for="bookname">书名</label>
             </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="author" name="author" placeholder="author">
-                <label for="author">作者</label>
+            <div class="form-outline">
+                <input required type="text" class="form-control" id="author" name="author">
+                <label class="form-label" for="author">作者</label>
             </div>
 
-            <div class="form-floating">
-                <input type="text" class="form-control" id="amount" name="amount" placeholder="amount">
-                <label for="amount">数量</label>
+            <div class="form-outline">
+                <input required type="text" class="form-control" id="amount" name="amount">
+                <label class="form-label" for="amount">数量</label>
             </div>
 
 
@@ -32,7 +32,9 @@
             </div>
             <button type="submit" class="btn btn-primary" style="float: right">提交</button>
         </form>
+
     </div>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
 </div>
 </body>
 </html>
