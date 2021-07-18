@@ -1,5 +1,6 @@
 package com.sundingyi.libmanager.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.sundingyi.libmanager.model.Book;
 import com.sundingyi.libmanager.model.User;
 import com.sundingyi.libmanager.service.BookService;
@@ -41,7 +42,9 @@ public class SearchController {
                              @RequestParam("author") String author,
                              Model model) {
         List<Book> bookList = userService.findLikeBook(bookname, author);
-        model.addAttribute("bookList", bookList);
+        PageInfo<Book> bookPageInfo = new PageInfo<>(bookList);
+//        bookPageInfo.set
+        model.addAttribute("bookPageInfo", bookPageInfo);
         return "index";
     }
     

@@ -1,13 +1,12 @@
 package com.sundingyi.libmanager.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.sundingyi.libmanager.model.Book;
 import com.sundingyi.libmanager.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
@@ -18,10 +17,11 @@ public class IndexController {
     }
     
     @GetMapping("/")
-    public String index(Model model) {
-        List<Book> bookList = new ArrayList<>();
-        bookList = bookService.getAllBooks();
-        model.addAttribute("bookList", bookList);
+    public String index(Model model,
+                        @RequestParam(value = "page", defaultValue = "1") int page) {
+        PageInfo<Book> bookPageInfo = bookService.getAllBooks(page, 8);
+        model.addAttribute("bookPageInfo", bookPageInfo);
+        model.addAttribute("noPage", true);
         return "index";
     }
     

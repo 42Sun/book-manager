@@ -1,5 +1,7 @@
 package com.sundingyi.libmanager.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sundingyi.libmanager.dao.BookDao;
 import com.sundingyi.libmanager.dao.MyDao;
 import com.sundingyi.libmanager.model.Book;
@@ -19,10 +21,11 @@ public class BookService {
     }
     
     
-    public List<Book> getAllBooks() {
+    public PageInfo<Book> getAllBooks(int page, int pageSize) {
+        PageHelper.startPage(page, pageSize);
         BookExample bookExample = new BookExample();
         List<Book> books = bookDao.selectByExample(bookExample);
-        return books;
+        return new PageInfo<>(books);
     }
     
     public Book getById(long id) {
