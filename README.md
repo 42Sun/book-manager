@@ -1,6 +1,5 @@
 # lib-manager
-
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 ## 技术栈
 ### 后端
 - Spring Boot
