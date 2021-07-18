@@ -14,8 +14,8 @@
 
             <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 1rem">
                 <div th:class="${book.getBorrowed == 1} ? 'card mb-3' : 'card bg-light mb-3'"
-                     style="max-width: 18rem; margin: auto;     margin-left: .6em;
-;height: 13rem;" th:each="book : ${bookList}">
+                     style="max-width: 18rem; margin: auto;margin-left: .6em;height: 13rem;"
+                     th:each="book : ${bookPageInfo.list}">
                     <div class="card-header"
                          th:text="${book.getBorrowed == 1} ? '还在' : '被 ' + ${book.borrowedTo} + ' 借走了'"></div>
                     <div class="card-body">
@@ -23,10 +23,38 @@
                             <a style="" th:href="@{'/book/' + ${book.id}}"
                                th:text="${book.getBookname()}"></a>
                         </h5>
-                        <p class="card-text" th:text="${book.getAuthor()}"></p>
+                        <span class="card-text" th:text="${book.getAuthor()}"></span>
+                        <br>
+                        <span> #[[${book.id}]]</span>
                     </div>
                 </div>
             </div>
+            <!--            分页-->
+            <nav aria-label="pagination" th:if="${noPage == true}">
+                <ul class="pagination">
+                    <li th:class="page-item" th:if="${!bookPageInfo.isFirstPage == true}">
+                        <a class="page-link" th:href="@{/(page = ${bookPageInfo.navigateFirstPage})}"
+                           aria-disabled="true">首页</a>
+                    </li>
+                    <li th:class="${bookPageInfo.hasPreviousPage == true} ? 'page-item' : 'page-item disabled'">
+                        <a class="page-link" th:href="@{/(page = ${bookPageInfo.pageNum - 1})}" tabindex="-1"
+                           aria-disabled="true">上一页</a>
+                    </li>
+                    <li th:class="${bookPageInfo.pageNum == page} ? 'page-item active' : 'page-item'"
+                        th:each="page : ${bookPageInfo.navigatepageNums}">
+                        <a class="page-link" th:href="@{/(page = ${page})}">[[${page}]] <span
+                                class="visually-hidden"></span></a>
+                    </li>
+                    <li th:class="${bookPageInfo.hasNextPage == true} ? 'page-item' : 'page-item disabled'">
+                        <a class="page-link" th:href="@{/(page = ${bookPageInfo.pageNum + 1})}"
+                           aria-disabled="true">下一页</a>
+                    </li>
+                    <li th:class="page-item" th:if="${!bookPageInfo.isLastPage == true}">
+                        <a class="page-link" th:href="@{/(page = ${bookPageInfo.navigateLastPage})}"
+                           aria-disabled="true">末页</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
