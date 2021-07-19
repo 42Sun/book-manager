@@ -13,25 +13,32 @@
         <p>读者 reader </p>
         <p>书籍管理员 admin</p>
         <p>借阅管理员 boradmin</p>
-        <p style="color: darkblue">密码都是 123</p>
+        <p style="color: #1366f0">密码都是 123</p>
     </div>
-    <form data-bitwarden-watching="1" action="/login" method="post">
-
-        <div class="form-floating">
-            <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
-            <label for="username">用户名</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            <label for="password">密码</label>
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
-    </form>
     <div class="alert alert-danger" role="alert" th:if="${param.error}" style="text-align: center;">
         <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
     </div>
 
+    <form action="/login" method="post">
+        <div class="form-outline mb-4">
+            <input required type="text" id="form1Example1" class="form-control" name="username"/>
+            <label class="form-label" for="form1Example1">用户名</label>
+        </div>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input required type="password" id="form1Example2" class="form-control" name="password"/>
+            <label class="form-label" for="form1Example2">密码</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block">登录</button>
+    </form>
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <div class="alert alert-danger" role="alert" th:if="${param.error}" style="text-align: center;">
+        <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+    </div>
 
 </main>
 </body>

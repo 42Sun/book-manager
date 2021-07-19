@@ -12,19 +12,18 @@
         <h2>新建用户</h2>
         <hr>
         <form th:action="@{/user/create}" method="post">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
-                <label for="username">用户名</label>
+            <div class="form-outline">
+                <input required type="text" class="form-control" id="username" name="username">
+                <label class="form-label" for="username">用户名</label>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                <label for="password">密码</label>
+            <div class="form-outline">
+                <input required type="password" class="form-control" id="password" name="password">
+                <label class="form-label" for="password">密码</label>
             </div>
             <div class="mb-3">
                 <select class="form-select" id="roles" name="roles" th:value="${roles}"
                         aria-label="Default select example">
-                    <option selected>用户组</option>
-                    <option value="READER">读者</option>
+                    <option selected value="READER">读者</option>
                     <option value="ADMIN">书籍管理员</option>
                     <option value="BORADMIN">借阅管理员</option>
                 </select>
@@ -35,6 +34,7 @@
             </div>
             <button type="submit" class="btn btn-primary" style="float: right">提交</button>
         </form>
+        <script type="text/javascript" src="/js/mdb.min.js"></script>
     </div>
 </div>
 
