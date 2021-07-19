@@ -29,7 +29,7 @@ a {
 
 a:hover {
     color: #999999;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .badge {
